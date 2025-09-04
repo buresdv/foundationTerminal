@@ -27,6 +27,20 @@ let foundationTerminalSharedTarget: ProjectDescription.Target = .target(
     ]
 )
 
+let foundationTerminalHTMLLogicTarget: ProjectDescription.Target = .target(
+    name: "FoundationTerminalHTMLLogic",
+    destinations: .iOS,
+    product: .staticLibrary,
+    bundleId: "eu.rikidar.foundation-terminal-html",
+    sources: [
+        "Modules/HTML Logic/**/*.swift"
+    ],
+    dependencies: [
+        .target(foundationTerminalSharedTarget),
+        .external(name: "SwiftHTMLParser")
+    ]
+)
+
 // MARK: - Main Target
 let foundationTerminalTarget: ProjectDescription.Target = .target(
     name: "Foundation Terminal",
@@ -72,6 +86,7 @@ let project = Project(
     targets: [
         foundationTerminalTarget,
         foundationTerminalSharedTarget,
+        foundationTerminalHTMLLogicTarget,
         foundationTerminalTestsTarget
     ]
 )

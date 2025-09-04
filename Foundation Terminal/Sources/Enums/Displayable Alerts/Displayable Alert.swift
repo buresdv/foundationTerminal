@@ -10,4 +10,6 @@ import Foundation
 enum DisplayableAlert: LocalizedError
 {
     case failedToInitializePersistenceContainer(modelDescription: LocalizedStringResource, error: Error)
+    
+    case failedToLoadArticleDetails(error: ArticleManager.DataLoadingError)
 }

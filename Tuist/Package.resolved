@@ -1,5 +1,5 @@
 {
-  "originHash" : "b35c49ab676c0af9d25c1ff7cad624a0e7b08f3209e34c01cdfd8e8ffc204581",
+  "originHash" : "686a123052bb945283582d2f9461a08f18d70259c2c0b36c952da28353c7dc4e",
   "pins" : [
     {
       "identity" : "buttonkit",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "b14cc56dcf9efe09f9e41cf7e088bc2d963a661d",
         "version" : "9.0.4"
+      }
+    },
+    {
+      "identity" : "swift-html-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rnantes/swift-html-parser",
+      "state" : {
+        "revision" : "fdc7c20fe62c0a0a846cca05f89fd3dc0fe6112a",
+        "version" : "1.0.0"
       }
     },
     {

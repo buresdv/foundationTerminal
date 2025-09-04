@@ -23,6 +23,8 @@ private extension View
                 {
                 case .failedToInitializePersistenceContainer:
                     EmptyView()
+                case .failedToLoadArticleDetails:
+                    EmptyView()
                 }
             } message: { displayedError in
                 if let recoverySuggestion = displayedError.recoverySuggestion

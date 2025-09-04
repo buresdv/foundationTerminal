@@ -2,7 +2,6 @@
   "sourceLanguage" : "en",
   "strings" : {
     "action.add-article" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -23,6 +22,12 @@
         }
       }
     },
+    "action.search" : {
+
+    },
+    "add-article.article-details.header" : {
+
+    },
     "add-article.article-identifier.placeholder" : {
 
     },
@@ -30,7 +35,6 @@
 
     },
     "add-article.title" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -40,11 +44,38 @@
         }
       }
     },
+    "alert.failed-container-initialization.model-description-%@.error-%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "alert.failed-container-initialization.model-description-%1$@.error-%2$@"
+          }
+        }
+      }
+    },
+    "article.title" : {
+
+    },
+    "data.missing" : {
+
+    },
     "Edit %@" : {
 
     },
+    "error.fatal" : {
+
+    },
+    "html-parsing.error.could-not-parse-html.%@" : {
+
+    },
+    "html-parsing.error.coult-not-convert-data-to-string" : {
+
+    },
+    "model.article.description" : {
+
+    },
     "status.no-articles-saved.title" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

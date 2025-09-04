@@ -5,6 +5,7 @@ import FoundationTerminalShared
 extension EnvironmentValues
 {
     @Entry var articleManager: ArticleManager = .init()
+    @Entry var terminalHTMLParser: TerminalHTMLParser = .init()
 }
 
 @main
@@ -13,6 +14,7 @@ struct FoundationTerminalApp: App
     @State var appState: AppState = .init()
     
     let articleManager: ArticleManager = .init()
+    let terminalHTMLParser: TerminalHTMLParser = .init()
     
     var body: some Scene
     {
@@ -22,6 +24,7 @@ struct FoundationTerminalApp: App
         }
         .environment(appState)
         .environment(\.articleManager, articleManager)
+        .environment(\.terminalHTMLParser, terminalHTMLParser)
         .modelContainer(
             for: Article.self,
             inMemory: false,

@@ -5,14 +5,17 @@
 //  Created by David Bureš - P on 02.09.2025.
 //
 
+import ButtonKit
+import FoundationTerminalHTMLLogic
 import FoundationTerminalShared
 import SwiftUI
-import ButtonKit
 
 struct AddArticleView: View
 {
     @Environment(\.articleManager) var articleManager: ArticleManager
-    
+    @Environment(\.terminalHTMLParser) var terminalHTMLParser: TerminalHTMLParser
+    @Environment(AppState.self) var appState: AppState
+
     enum FocusableField
     {
         case articleNumber
@@ -24,9 +27,17 @@ struct AddArticleView: View
     @State private var articleNumber: Int = .zero
 
     @FocusState var focusableField: FocusableField?
-    
+
     @State private var isLoadingArticleData: Bool = false
-    
+
+    enum AddArticleState
+    {
+        case initial
+        case loaded(_ loadedData: Data)
+    }
+
+    @State private var addArticleState: AddArticleState = .initial
+
     var body: some View
     {
         NavigationStack
@@ -44,28 +55,35 @@ struct AddArticleView: View
                         Text("add-article.article-identifier.placeholder")
                     }
                     .focused($focusableField, equals: .articleNumber)
+                    .keyboardType(.numberPad)
                     .submitLabel(.search)
-                    .onSubmit(of: .search)
+
+                    AsyncButton
                     {
-                        Task
+                        do throws(ArticleManager.DataLoadingError)
                         {
-                            do
-                            {
-                                let loadedData = try await articleManager.loadDataFromWiki(.scp(articleNumber))
-                            }
-                            catch let articleLoadingError
-                            {
-                                AppConstants.shared.logger.error("Failed while trying to load article data: \(articleLoadingError.localizedDescription)")
-                            }
+                            let loadedData = try await articleManager.loadDataFromWiki(.scp(.init(integerLiteral: articleNumber)))
+
+                            addArticleState = .loaded(loadedData)
                         }
-                    }
-                    
-                    Button
-                    {
-                        AppConstants.shared.logger.info("Clicked")
+                        catch let articleLoadingError
+                        {
+                            AppConstants.shared.logger.error("Failed while trying to load article data: \(articleLoadingError.localizedDescription)")
+
+                            appState.alertManager.showAlert(.failedToLoadArticleDetails(error: articleLoadingError))
+                        }
                     } label: {
-                        Label("action.check-article-validity", systemImage: "magnifyingglass")
+                        Label("action.search", systemImage: "magnifyingglass")
                     }
+                    .asyncButtonStyle(.overlay(style: .percent))
+                }
+
+                switch addArticleState
+                {
+                case .initial:
+                    initialArticleView
+                case .loaded(let loadedData):
+                    LoadedDetailsView(articleData: loadedData)
                 }
             }
             .navigationTitle("add-article.title")
@@ -74,5 +92,11 @@ struct AddArticleView: View
         {
             focusableField = .articleNumber
         }
+    }
+
+    @ViewBuilder
+    var initialArticleView: some View
+    {
+        EmptyView()
     }
 }
