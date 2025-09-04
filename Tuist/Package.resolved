@@ -1,0 +1,42 @@
+{
+  "originHash" : "b35c49ab676c0af9d25c1ff7cad624a0e7b08f3209e34c01cdfd8e8ffc204581",
+  "pins" : [
+    {
+      "identity" : "buttonkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Dean151/ButtonKit",
+      "state" : {
+        "revision" : "5d049dec3ec474ea2ad79eb4acd066edeacb9953",
+        "version" : "0.6.1"
+      }
+    },
+    {
+      "identity" : "defaults",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Defaults",
+      "state" : {
+        "revision" : "b14cc56dcf9efe09f9e41cf7e088bc2d963a661d",
+        "version" : "9.0.4"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax",
+      "state" : {
+        "revision" : "f99ae8aa18f0cf0d53481901f88a0991dc3bd4a2",
+        "version" : "601.0.1"
+      }
+    },
+    {
+      "identity" : "swiftlintplugins",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SimplyDanny/SwiftLintPlugins",
+      "state" : {
+        "revision" : "634ada2eee7eac4ca79bf1fc8943ddc91408eb06",
+        "version" : "0.60.0"
+      }
+    }
+  ],
+  "version" : 3
+}

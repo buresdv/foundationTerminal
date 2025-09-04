@@ -1,0 +1,59 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "action.add-article" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add article"
+          }
+        }
+      }
+    },
+    "action.check-article-validity" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Load article…"
+          }
+        }
+      }
+    },
+    "add-article.article-identifier.placeholder" : {
+
+    },
+    "add-article.article-identifier.prompt" : {
+
+    },
+    "add-article.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add article"
+          }
+        }
+      }
+    },
+    "Edit %@" : {
+
+    },
+    "status.no-articles-saved.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No articles saved"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
