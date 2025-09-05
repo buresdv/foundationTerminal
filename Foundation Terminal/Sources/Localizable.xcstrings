@@ -62,6 +62,16 @@
         }
       }
     },
+    "action.open-article.%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read %@"
+          }
+        }
+      }
+    },
     "action.search" : {
       "localizations" : {
         "en" : {

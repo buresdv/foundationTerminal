@@ -18,14 +18,14 @@ final class Article
         {
             return [
                 .planning,
-                .reading(progress: nil),
-                .finished(rating: nil)
+                .reading,
+                .finished
             ]
         }
         
         case planning
-        case reading(progress: Double?)
-        case finished(rating: Rating?)
+        case reading
+        case finished
 
         var description: String
         {
@@ -81,7 +81,17 @@ final class Article
     var readingStatus: ReadingStatus
 
     var createdAt: Date
+    
+    var readingProgress: Double
+    
+    var rating: Rating?
 
+    @Transient
+    var friendlyName: String
+    {
+        return articleType.description
+    }
+    
     @Transient
     var articleLink: URL
     {
@@ -95,7 +105,8 @@ final class Article
         articleType: ArticleType,
         customDescription: String? = nil,
         category: SavedArticleCategory? = nil,
-        readingStatus: ReadingStatus
+        readingStatus: ReadingStatus,
+        rating: Rating? = nil
     )
     {
         self.articleType = articleType
@@ -103,5 +114,7 @@ final class Article
         self.category = category
         self.readingStatus = readingStatus
         self.createdAt = .now
+        self.readingProgress = 0
+        self.rating = rating
     }
 }

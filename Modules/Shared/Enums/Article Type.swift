@@ -7,42 +7,42 @@
 
 import Foundation
 
-public enum ArticleType: Codable, Sendable
+public enum ArticleType: Codable, Sendable, CustomStringConvertible
 {
     case scp(_ number: SCPNumber)
     case tale(_ address: String)
 
     /*
-    /// Initialize the enum based on the article URL
-    init?(fromURL articleURL: URL)
-    {
-        /// For SCPs, the first path component is always "scp-[number]"; for tales, it is the tale URL
-        guard let articleTypeDeterminingPathComponent = articleURL.pathComponents.first else
-        {
-            AppConstants.shared.logger.error("Couldn't extract determining path component from article URL")
-            return nil
-        }
-        
-        if articleTypeDeterminingPathComponent.contains("scp-\\d{3,}")
-        {
-            guard let scpNumberExtractionRegex: Regex = try? .init("\\d{3,}") else
-            {
-                AppConstants.shared.logger.error("Couldn't construct REGEX for extracting SCP number")
-                
-                return nil
-            }
-            
-            let extractedSCPNumber = articleTypeDeterminingPathComponent.ranges(of: scpNumberExtractionRegex)
-            
-            self = .scp(.init(integerLiteral: Int(extractedSCPNumber)))
-        }
-        else
-        {
-            self = .tale(articleTypeDeterminingPathComponent)
-        }
-    }
-     */
-    
+     /// Initialize the enum based on the article URL
+     init?(fromURL articleURL: URL)
+     {
+         /// For SCPs, the first path component is always "scp-[number]"; for tales, it is the tale URL
+         guard let articleTypeDeterminingPathComponent = articleURL.pathComponents.first else
+         {
+             AppConstants.shared.logger.error("Couldn't extract determining path component from article URL")
+             return nil
+         }
+
+         if articleTypeDeterminingPathComponent.contains("scp-\\d{3,}")
+         {
+             guard let scpNumberExtractionRegex: Regex = try? .init("\\d{3,}") else
+             {
+                 AppConstants.shared.logger.error("Couldn't construct REGEX for extracting SCP number")
+
+                 return nil
+             }
+
+             let extractedSCPNumber = articleTypeDeterminingPathComponent.ranges(of: scpNumberExtractionRegex)
+
+             self = .scp(.init(integerLiteral: Int(extractedSCPNumber)))
+         }
+         else
+         {
+             self = .tale(articleTypeDeterminingPathComponent)
+         }
+     }
+      */
+
     public struct SCPNumber: RawRepresentable, Codable, Sendable, ExpressibleByIntegerLiteral, LosslessStringConvertible
     {
         public let rawValue: Int
@@ -106,6 +106,17 @@ public enum ArticleType: Codable, Sendable
             return baseURLForLoading.appending(component: "scp-\(number)")
         case .tale(let address):
             return baseURLForLoading.appending(component: address)
+        }
+    }
+
+    public var description: String
+    {
+        switch self
+        {
+        case .scp(let scpNumber):
+            return "SCP-\(scpNumber.description)"
+        case .tale(let taleAddress):
+            return "Tale: \(taleAddress)"
         }
     }
 }

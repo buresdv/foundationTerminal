@@ -18,13 +18,13 @@ struct ArticleListView: View
         { savedArticle in
             NavigationLink(value: savedArticle)
             {
-                Text(savedArticle.articleLink.absoluteString)
+                articleListItem(article: savedArticle)
             }
         }
         .navigationTitle("article-list.title")
         .navigationDestination(for: Article.self)
         { article in
-            Text(article.articleLink.absoluteString)
+            ArticleDetailsView(article: article)
         }
         .toolbar
         {
@@ -32,6 +32,26 @@ struct ArticleListView: View
             {
                 OpenArticleSavingSheetButton()
             }
+        }
+    }
+    
+    @ViewBuilder
+    func articleListItem(article: Article) -> some View
+    {
+        VStack(alignment: .leading)
+        {
+            Text(article.friendlyName)
+                .font(.headline)
+            
+            if let notes = article.customDescription
+            {
+                Text(notes)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            
+            Text(article.readingStatus.description)
+                .font(.caption)
         }
     }
 }

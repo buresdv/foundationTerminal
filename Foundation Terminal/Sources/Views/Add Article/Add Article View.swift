@@ -44,7 +44,7 @@ struct AddArticleView: View
 
     @State private var articleNotes: String = .init()
     @State private var seletedCategory: SavedArticleCategory?
-    @State private var articleReadingStatus: Article.ReadingStatus = .reading(progress: nil)
+    @State private var articleReadingStatus: Article.ReadingStatus = .planning
 
     @Observable
     final class InternalNavigationManager
