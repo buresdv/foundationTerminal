@@ -44,24 +44,5 @@ struct FoundationTerminalApp: App
                 appState.startpageState = .fatalError
             }
         }
-        .modelContainer(
-            for: SavedArticleCategory.self,
-            inMemory: false,
-            isAutosaveEnabled: true,
-            isUndoEnabled: true
-        )
-        { initializationResult in
-            switch initializationResult
-            {
-            case .success:
-                AppConstants.shared.logger.info("Successfully initialized model container for Categories")
-            case .failure(let failure):
-                AppConstants.shared.logger.error("Failed to initialize model container for Categories: \(failure.localizedDescription)")
-
-                appState.alertManager.showAlert(.failedToInitializePersistenceContainer(modelDescription: "model.article.description", error: failure))
-
-                appState.startpageState = .fatalError
-            }
-        }
     }
 }

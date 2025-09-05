@@ -19,6 +19,8 @@ struct AddCategoryView: View
         name: .init()
     )
 
+    @State private var notes: String = .init()
+    
     @FocusState var isCategoryNameFieldFocused: Bool
     
     var body: some View
@@ -34,6 +36,11 @@ struct AddCategoryView: View
                 isCategoryNameFieldFocused = true
             }
             .focused($isCategoryNameFieldFocused)
+            
+            Section
+            {
+                ArticleNotesView(notes: $notes)
+            }
         }
         .navigationTitle("add-category.title")
         .toolbar
@@ -52,6 +59,12 @@ struct AddCategoryView: View
     
     func saveNewCategory()
     {
+        
+        if !notes.isEmpty
+        {
+            newCategory.notes = notes
+        }
+        
         modelContext.insert(newCategory)
         
         dismiss()

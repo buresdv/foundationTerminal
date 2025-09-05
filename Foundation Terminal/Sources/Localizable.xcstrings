@@ -31,6 +31,16 @@
         }
       }
     },
+    "action.cancel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
     "action.check-article-validity" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -38,6 +48,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Load article…"
+          }
+        }
+      }
+    },
+    "action.delete-swift-data" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete saved data"
           }
         }
       }
@@ -53,7 +73,14 @@
       }
     },
     "add-article.article-category.header" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category"
+          }
+        }
+      }
     },
     "add-article.article-details.header" : {
       "localizations" : {
@@ -116,6 +143,16 @@
         }
       }
     },
+    "add-article.reading-status.label" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reading status"
+          }
+        }
+      }
+    },
     "add-article.title" : {
       "localizations" : {
         "en" : {
@@ -156,12 +193,35 @@
         }
       }
     },
+    "alert.could-not-load-article-details.title" : {
+
+    },
     "alert.failed-container-initialization.model-description-%@.error-%@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "alert.failed-container-initialization.model-description-%1$@.error-%2$@"
+            "state" : "translated",
+            "value" : "Loading of container for type %1$@ failed (%2$@)"
+          }
+        }
+      }
+    },
+    "alert.failed-container-initialization.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t load articles from storage"
+          }
+        }
+      }
+    },
+    "article-list.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved articles"
           }
         }
       }
@@ -196,6 +256,26 @@
         }
       }
     },
+    "delete-swift-data.confirmation.message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This action cannot be undone"
+          }
+        }
+      }
+    },
+    "delete-swift-data.confirmation.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to delete your saved articles?"
+          }
+        }
+      }
+    },
     "Edit %@" : {
 
     },
@@ -216,7 +296,94 @@
 
     },
     "model.article.description" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Article"
+          }
+        }
+      }
+    },
+    "model.article.rating.average" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average"
+          }
+        }
+      }
+    },
+    "model.article.rating.exceptional" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exceptional"
+          }
+        }
+      }
+    },
+    "model.article.rating.good" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good"
+          }
+        }
+      }
+    },
+    "model.article.rating.horrible" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Horrible"
+          }
+        }
+      }
+    },
+    "model.article.rating.poor" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poor"
+          }
+        }
+      }
+    },
+    "model.article.reading-status.finished" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finished"
+          }
+        }
+      }
+    },
+    "model.article.reading-status.planning" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planning"
+          }
+        }
+      }
+    },
+    "model.article.reading-status.reading" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reading"
+          }
+        }
+      }
     },
     "status.no-articles-saved.title" : {
       "localizations" : {

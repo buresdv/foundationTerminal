@@ -16,7 +16,7 @@ struct StartPage: View
         switch appState.startpageState
         {
         case .setUp:
-            ArticleListView()
+            ArticleOverviewView()
         case .fatalError:
             fatalError
         }

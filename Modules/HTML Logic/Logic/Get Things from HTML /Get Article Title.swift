@@ -90,7 +90,12 @@ extension TerminalHTMLParser
         
         LibraryConstants.shared.logger.debug("Found these elements while traversing for [ARTICLE TITLE]: \(foundElements)")
         
-        return foundElements.first?.textNodes.first?.text
+        guard let rawTitle: String? = foundElements.first?.textNodes.first?.text else
+        {
+            return nil
+        }
+        
+        return rawTitle?.replacingOccurrences(of: " - SCP Foundation", with: "")
     }
     
     private func getRating(

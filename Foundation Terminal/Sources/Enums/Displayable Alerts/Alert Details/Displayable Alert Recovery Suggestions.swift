@@ -9,6 +9,7 @@ import Foundation
 
 extension DisplayableAlert
 {
+    /// The message of the alert
     var recoverySuggestion: String?
     {
         switch self

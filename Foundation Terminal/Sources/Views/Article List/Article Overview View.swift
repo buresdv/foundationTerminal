@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-struct ArticleListView: View
+struct ArticleOverviewView: View
 {
     @Environment(\.modelContext) var modelContext: ModelContext
 
@@ -26,7 +26,7 @@ struct ArticleListView: View
             }
             else
             {
-                articleList
+                ArticleListView()
             }
         }
     }
@@ -40,24 +40,7 @@ struct ArticleListView: View
         } description: {
             EmptyView()
         } actions: {
-            Button
-            {
-                appState.sheetManager.showSheet(.addArticle)
-            } label: {
-                Label("action.add-article", systemImage: "plus")
-            }
-        }
-    }
-
-    @ViewBuilder
-    var articleList: some View
-    {
-        List(savedArticles)
-        { savedArticle in
-            NavigationLink(value: savedArticle)
-            {
-                Text(savedArticle.articleLink.absoluteString)
-            }
+            OpenArticleSavingSheetButton()
         }
     }
 }

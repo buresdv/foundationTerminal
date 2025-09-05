@@ -8,10 +8,13 @@
 import ButtonKit
 import FoundationTerminalHTMLLogic
 import FoundationTerminalShared
+import SwiftData
 import SwiftUI
 
 struct AddArticleView: View
 {
+    @Environment(\.modelContext) var modelContext: ModelContext
+
     @Environment(\.articleManager) var articleManager: ArticleManager
     @Environment(\.terminalHTMLParser) var terminalHTMLParser: TerminalHTMLParser
     @Environment(AppState.self) var appState: AppState
@@ -38,10 +41,11 @@ struct AddArticleView: View
     }
 
     @State private var addArticleState: AddArticleState = .initial
-    
+
     @State private var articleNotes: String = .init()
     @State private var seletedCategory: SavedArticleCategory?
-    
+    @State private var articleReadingStatus: Article.ReadingStatus = .reading(progress: nil)
+
     @Observable
     final class InternalNavigationManager
     {
@@ -49,20 +53,20 @@ struct AddArticleView: View
         {
             case createCategory
         }
-        
+
         var path: NavigationPath = .init()
-        
+
         func navigate(to navigationDestination: InternalNavigationManager.NavigationDestination)
         {
             self.path.append(navigationDestination)
         }
-        
+
         func goBack()
         {
             self.path.removeLast()
         }
     }
-    
+
     @State private var internalNavigationManager: InternalNavigationManager = .init()
 
     var body: some View
@@ -90,9 +94,9 @@ struct AddArticleView: View
                         do throws(ArticleManager.DataLoadingError)
                         {
                             AppConstants.shared.logger.debug("Will initialize article loading")
-                            
+
                             addArticleState = .loading
-                            
+
                             let loadedData = try await articleManager.loadDataFromWiki(.scp(.init(integerLiteral: articleNumber)))
 
                             addArticleState = .loaded(loadedData)
@@ -129,19 +133,34 @@ struct AddArticleView: View
                         {
                             AppConstants.shared.logger.debug("[NEW ADD ARTICLE VIEW]: Loaded")
                         }
+
+                    ArticleReadingStatusView(readingStatus: $articleReadingStatus)
                     
                     ArticleCategoriesView(selectedCategory: $seletedCategory)
-                    
+
                     ArticleNotesView(notes: $articleNotes)
                 }
             }
             .navigationTitle("add-article.title")
             .environment(internalNavigationManager)
-            .navigationDestination(for: AddArticleView.InternalNavigationManager.NavigationDestination.self) { internalNavigationDestination in
+            .navigationDestination(for: AddArticleView.InternalNavigationManager.NavigationDestination.self)
+            { internalNavigationDestination in
                 switch internalNavigationDestination
                 {
                 case .createCategory:
                     AddCategoryView()
+                }
+            }
+            .toolbar
+            {
+                ToolbarItem(placement: .topBarTrailing)
+                {
+                    Button
+                    {
+                        saveNewArticle()
+                    } label: {
+                        Label("action.add-article", image: "custom.text.document.badge.plus")
+                    }
                 }
             }
         }
@@ -155,5 +174,19 @@ struct AddArticleView: View
     var initialArticleView: some View
     {
         EmptyView()
+    }
+
+    func saveNewArticle()
+    {
+        let newArticle: Article = .init(
+            articleType: .scp(.init(articleNumber)),
+            customDescription: articleNotes,
+            category: seletedCategory,
+            readingStatus: articleReadingStatus
+        )
+        
+        modelContext.insert(newArticle)
+        
+        appState.sheetManager.dismissSheet()
     }
 }

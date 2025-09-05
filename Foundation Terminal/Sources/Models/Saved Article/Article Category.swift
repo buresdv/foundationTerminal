@@ -18,13 +18,16 @@ final class SavedArticleCategory
     /// When this category was created
     var createdAt: Date
     
+    var notes: String?
+    
     /// Articles included in the category
     @Relationship(deleteRule: .cascade, inverse: \Article.category)
     var articles: [Article]?
     
-    init(name: String)
+    init(name: String, notes: String? = nil)
     {
         self.name = name
+        self.notes = notes
         self.createdAt = .now
     }
 }
