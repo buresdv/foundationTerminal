@@ -26,7 +26,7 @@ struct FoundationTerminalApp: App
         .environment(\.articleManager, articleManager)
         .environment(\.terminalHTMLParser, terminalHTMLParser)
         .modelContainer(
-            for: Article.self,
+            for: SavedArticleCategory.self,
             inMemory: false,
             isAutosaveEnabled: true,
             isUndoEnabled: true

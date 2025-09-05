@@ -33,14 +33,41 @@ struct AddArticleView: View
     enum AddArticleState
     {
         case initial
+        case loading
         case loaded(_ loadedData: Data)
     }
 
     @State private var addArticleState: AddArticleState = .initial
+    
+    @State private var articleNotes: String = .init()
+    @State private var seletedCategory: SavedArticleCategory?
+    
+    @Observable
+    final class InternalNavigationManager
+    {
+        enum NavigationDestination: Hashable
+        {
+            case createCategory
+        }
+        
+        var path: NavigationPath = .init()
+        
+        func navigate(to navigationDestination: InternalNavigationManager.NavigationDestination)
+        {
+            self.path.append(navigationDestination)
+        }
+        
+        func goBack()
+        {
+            self.path.removeLast()
+        }
+    }
+    
+    @State private var internalNavigationManager: InternalNavigationManager = .init()
 
     var body: some View
     {
-        NavigationStack
+        NavigationStack(path: Bindable(internalNavigationManager).path)
         {
             Form
             {
@@ -62,6 +89,10 @@ struct AddArticleView: View
                     {
                         do throws(ArticleManager.DataLoadingError)
                         {
+                            AppConstants.shared.logger.debug("Will initialize article loading")
+                            
+                            addArticleState = .loading
+                            
                             let loadedData = try await articleManager.loadDataFromWiki(.scp(.init(integerLiteral: articleNumber)))
 
                             addArticleState = .loaded(loadedData)
@@ -82,11 +113,35 @@ struct AddArticleView: View
                 {
                 case .initial:
                     initialArticleView
+                        .onAppear
+                        {
+                            AppConstants.shared.logger.debug("[NEW ADD ARTICLE VIEW]: Initial")
+                        }
+                case .loading:
+                    ProgressView()
+                        .onAppear
+                        {
+                            AppConstants.shared.logger.debug("[NEW ADD ARTICLE VIEW]: Loading")
+                        }
                 case .loaded(let loadedData):
-                    LoadedDetailsView(articleData: loadedData)
+                    LoadedDetailsView(articleData: loadedData, articleType: .scp(.init(integerLiteral: articleNumber)))
+                        .onAppear
+                        {
+                            AppConstants.shared.logger.debug("[NEW ADD ARTICLE VIEW]: Loaded")
+                        }
+                    
+                    ArticleNotesView(notes: $articleNotes, selectedCategory: $seletedCategory)
                 }
             }
             .navigationTitle("add-article.title")
+            .environment(internalNavigationManager)
+            .navigationDestination(for: AddArticleView.InternalNavigationManager.NavigationDestination.self) { internalNavigationDestination in
+                switch internalNavigationDestination
+                {
+                case .createCategory:
+                    AddCategoryView()
+                }
+            }
         }
         .onAppear
         {

@@ -11,6 +11,26 @@
         }
       }
     },
+    "action.add-category" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create category…"
+          }
+        }
+      }
+    },
+    "action.add-notes" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add notes…"
+          }
+        }
+      }
+    },
     "action.check-article-validity" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -23,16 +43,43 @@
       }
     },
     "action.search" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search…"
+          }
+        }
+      }
     },
     "add-article.article-details.header" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Details"
+          }
+        }
+      }
     },
     "add-article.article-identifier.placeholder" : {
 
     },
     "add-article.article-identifier.prompt" : {
 
+    },
+    "add-article.article-notes.category.label" : {
+
+    },
+    "add-article.article-notes.header" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
+          }
+        }
+      }
     },
     "add-article.title" : {
       "localizations" : {
@@ -44,6 +91,15 @@
         }
       }
     },
+    "add-category.name.label" : {
+
+    },
+    "add-category.name.prompt" : {
+
+    },
+    "add-category.title" : {
+
+    },
     "alert.failed-container-initialization.model-description-%@.error-%@" : {
       "localizations" : {
         "en" : {
@@ -54,17 +110,48 @@
         }
       }
     },
+    "article.rating" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rating"
+          }
+        }
+      }
+    },
     "article.title" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Title"
+          }
+        }
+      }
     },
     "data.missing" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No data found"
+          }
+        }
+      }
     },
     "Edit %@" : {
 
     },
     "error.fatal" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fatal error"
+          }
+        }
+      }
     },
     "html-parsing.error.could-not-parse-html.%@" : {
 

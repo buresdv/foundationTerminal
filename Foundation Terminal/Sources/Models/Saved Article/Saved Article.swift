@@ -18,6 +18,8 @@ final class Article
 
     var customDescription: String?
     
+    var category: SavedArticleCategory?
+    
     @Transient
     var modelDesctiption: LocalizedStringKey = "model.article.description"
     

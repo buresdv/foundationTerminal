@@ -13,37 +13,34 @@ struct LoadedDetailsView: View
     @Environment(\.terminalHTMLParser) var terminalHTMLParser: TerminalHTMLParser
 
     let articleData: Data
+    let articleType: ArticleType
 
     enum DetailsLoadingState
     {
         case loading
-        case loaded(loadedArticleDetails: ParsedDetails)
+        case loaded(loadedArticleDetails: ArticleDetails)
         case failed(_ error: String)
-    }
-
-    struct ParsedDetails
-    {
-        let articleTitle: String?
     }
 
     @State private var detailsLoadingState: DetailsLoadingState = .loading
 
     var body: some View
     {
-        Section("add-article.article-details.header")
+        
+        switch detailsLoadingState
         {
-            switch detailsLoadingState
+        case .loading:
+            ProgressView()
+                .task
+                {
+                    await self.parseArticleDetails()
+                }
+            
+        case .loaded(let loadedArticleDetails):
+            Section("add-article.article-details.header")
             {
-            case .loading:
-                ProgressView()
-                    .task
-                    {
-                        await self.parseArticleDetails()
-                    }
-
-            case .loaded(let loadedArticleDetails):
                 LabeledContent {
-                    if let articleTitle = loadedArticleDetails.articleTitle
+                    if let articleTitle = loadedArticleDetails.title
                     {
                         Text(articleTitle)
                     }
@@ -55,26 +52,44 @@ struct LoadedDetailsView: View
                 } label: {
                     Text("article.title")
                 }
+                
+                LabeledContent {
+                    if let articleRating = loadedArticleDetails.rating
+                    {
+                        Text(articleRating.formatted(.number))
+                    }
+                    else
+                    {
+                        Text("data.missing")
+                            .disabled(true)
+                    }
+                } label: {
+                    Text("article.rating")
+                }
 
-            case .failed(let loadingError):
-                Text(loadingError)
             }
+            .onChange(of: articleData)
+            { _, _ in
+                self.detailsLoadingState = .loading
+            }
+            
+        case .failed(let loadingError):
+            Text(loadingError)
         }
     }
-
+    
     func parseArticleDetails() async
     {
         AppConstants.shared.logger.debug("Will try to parse article data")
         
         do
         {
-            let articleTitle: String? = try await terminalHTMLParser.getElementFromRawArticle(articleData, whatToGet: .title)
             
-            let constructedArticleData: ParsedDetails = .init(
-                articleTitle: articleTitle
+            let parsedArticle: ArticleDetails = try await terminalHTMLParser.getDetailsFromRawArticle(
+                articleData, articleType: articleType
             )
             
-            self.detailsLoadingState = .loaded(loadedArticleDetails: constructedArticleData)
+            self.detailsLoadingState = .loaded(loadedArticleDetails: parsedArticle)
         }
         catch let articleParsingError
         {
