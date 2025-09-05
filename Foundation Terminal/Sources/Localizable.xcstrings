@@ -52,6 +52,9 @@
         }
       }
     },
+    "add-article.article-category.header" : {
+
+    },
     "add-article.article-details.header" : {
       "localizations" : {
         "en" : {
@@ -63,15 +66,47 @@
       }
     },
     "add-article.article-identifier.placeholder" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2055"
+          }
+        }
+      }
     },
     "add-article.article-identifier.prompt" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Article number"
+          }
+        }
+      }
     },
     "add-article.article-notes.category.label" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category"
+          }
+        }
+      }
+    },
+    "add-article.article-notes.category.no-category" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None"
+          }
+        }
+      }
     },
     "add-article.article-notes.header" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -92,13 +127,34 @@
       }
     },
     "add-category.name.label" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        }
+      }
     },
     "add-category.name.prompt" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antimemetics"
+          }
+        }
+      }
     },
     "add-category.title" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add category"
+          }
+        }
+      }
     },
     "alert.failed-container-initialization.model-description-%@.error-%@" : {
       "localizations" : {

@@ -130,7 +130,9 @@ struct AddArticleView: View
                             AppConstants.shared.logger.debug("[NEW ADD ARTICLE VIEW]: Loaded")
                         }
                     
-                    ArticleNotesView(notes: $articleNotes, selectedCategory: $seletedCategory)
+                    ArticleCategoriesView(selectedCategory: $seletedCategory)
+                    
+                    ArticleNotesView(notes: $articleNotes)
                 }
             }
             .navigationTitle("add-article.title")
