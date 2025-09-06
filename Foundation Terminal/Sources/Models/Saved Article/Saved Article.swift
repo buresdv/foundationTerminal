@@ -22,7 +22,7 @@ final class Article
                 .finished
             ]
         }
-        
+
         case planning
         case reading
         case finished
@@ -39,14 +39,14 @@ final class Article
                 return String(localized: "model.article.reading-status.finished")
             }
         }
-        
+
         var id: Self
         {
             self
         }
     }
 
-    enum Rating: Codable, CustomStringConvertible
+    enum Rating: Identifiable, Codable, CustomStringConvertible, CaseIterable
     {
         case exceptional
         case good
@@ -70,6 +70,28 @@ final class Article
                 return String(localized: "model.article.rating.horrible")
             }
         }
+
+        var icon: String
+        {
+            switch self
+            {
+            case .exceptional:
+                return "medal.star"
+            case .good:
+                return "hand.thumbsup"
+            case .average:
+                return "equal"
+            case .poor:
+                return "hand.thumbsdown"
+            case .horrible:
+                return "chart.line.downtrend.xyaxis"
+            }
+        }
+        
+        var id: Self
+        {
+            self
+        }
     }
 
     var articleType: ArticleType
@@ -81,9 +103,9 @@ final class Article
     var readingStatus: ReadingStatus
 
     var createdAt: Date
-    
-    var readingProgress: Double
-    
+
+    var readingProgress: Int
+
     var rating: Rating?
 
     @Transient
@@ -91,7 +113,7 @@ final class Article
     {
         return articleType.description
     }
-    
+
     @Transient
     var articleLink: URL
     {

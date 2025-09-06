@@ -28,6 +28,8 @@ struct ArticleCategoriesView: View
                     Text("add-article.article-notes.category.no-category")
                         .tag(nil as SavedArticleCategory?)
                     
+                    Divider()
+                    
                     ForEach(availableCategories)
                     { availableCategory in
                         Text(availableCategory.name)

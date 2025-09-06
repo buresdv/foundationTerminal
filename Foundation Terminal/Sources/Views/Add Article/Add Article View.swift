@@ -33,7 +33,7 @@ struct AddArticleView: View
 
     @State private var isLoadingArticleData: Bool = false
 
-    enum AddArticleState
+    enum AddArticleState: Equatable
     {
         case initial
         case loading
@@ -134,7 +134,10 @@ struct AddArticleView: View
                             AppConstants.shared.logger.debug("[NEW ADD ARTICLE VIEW]: Loaded")
                         }
 
-                    ArticleReadingStatusView(readingStatus: $articleReadingStatus)
+                    Section
+                    {
+                        ArticleReadingStatusView(readingStatus: $articleReadingStatus)
+                    }
                     
                     ArticleCategoriesView(selectedCategory: $seletedCategory)
 
@@ -161,6 +164,7 @@ struct AddArticleView: View
                     } label: {
                         Label("action.add-article", image: "custom.text.document.badge.plus")
                     }
+                    .disabled(addArticleState == .initial || addArticleState == .loading)
                 }
             }
         }

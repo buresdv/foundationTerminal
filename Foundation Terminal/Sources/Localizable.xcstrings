@@ -204,7 +204,14 @@
       }
     },
     "alert.could-not-load-article-details.title" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t load article details"
+          }
+        }
+      }
     },
     "alert.failed-container-initialization.model-description-%@.error-%@" : {
       "localizations" : {
@@ -222,6 +229,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couldn’t load articles from storage"
+          }
+        }
+      }
+    },
+    "article-details.finished.label" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rating"
+          }
+        }
+      }
+    },
+    "article-details.reading.label" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progress"
           }
         }
       }
@@ -355,6 +382,16 @@
         }
       }
     },
+    "model.article.rating.none" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No rating"
+          }
+        }
+      }
+    },
     "model.article.rating.poor" : {
       "localizations" : {
         "en" : {
@@ -404,6 +441,9 @@
           }
         }
       }
+    },
+    "uncategorized.label" : {
+
     }
   },
   "version" : "1.0"

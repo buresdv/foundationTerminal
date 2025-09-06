@@ -13,18 +13,15 @@ struct ArticleReadingStatusView: View
 
     var body: some View
     {
-        Section
+        Picker(selection: $readingStatus)
         {
-            Picker(selection: $readingStatus)
-            {
-                ForEach(Article.ReadingStatus.allCases)
-                { readingStatus in
-                    Text(readingStatus.description)
-                }
-            } label: {
-                Text("add-article.reading-status.label")
+            ForEach(Article.ReadingStatus.allCases)
+            { readingStatus in
+                Text(readingStatus.description)
             }
-            .pickerStyle(.navigationLink)
+        } label: {
+            Text("add-article.reading-status.label")
         }
+        .pickerStyle(.navigationLink)
     }
 }

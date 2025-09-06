@@ -11,14 +11,19 @@ import SwiftUI
 struct ArticleListView: View
 {
     @Query var savedArticles: [Article]
+    @Query var savedCategories: [SavedArticleCategory]
 
     var body: some View
     {
-        List(savedArticles)
-        { savedArticle in
-            NavigationLink(value: savedArticle)
+        Group
+        {
+            if savedCategories.isEmpty
             {
-                articleListItem(article: savedArticle)
+                articleListWithoutCategories(articles: savedArticles)
+            }
+            else
+            {
+                articleListViewWithCategories(categories: savedCategories, articles: savedArticles)
             }
         }
         .navigationTitle("article-list.title")
@@ -34,24 +39,66 @@ struct ArticleListView: View
             }
         }
     }
-    
+
     @ViewBuilder
     func articleListItem(article: Article) -> some View
     {
-        VStack(alignment: .leading)
+        NavigationLink(value: article)
         {
-            Text(article.friendlyName)
-                .font(.headline)
-            
-            if let notes = article.customDescription
+            VStack(alignment: .leading)
             {
-                Text(notes)
+                Text(article.friendlyName)
+                    .font(.headline)
+
+                if let notes = article.customDescription
+                {
+                    Text(notes)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+
+                Text(article.readingStatus.description)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
             }
-            
-            Text(article.readingStatus.description)
-                .font(.caption)
+        }
+    }
+
+    @ViewBuilder
+    func articleListWithoutCategories(articles: [Article]) -> some View
+    {
+        List(articles)
+        { savedArticle in
+            articleListItem(article: savedArticle)
+        }
+    }
+
+    @ViewBuilder
+    func articleListViewWithCategories(categories: [SavedArticleCategory], articles: [Article]) -> some View
+    {
+        List
+        {
+            ForEach(categories)
+            { savedCategory in
+
+                Section
+                {
+                    ForEach(articles.filter { $0.category == savedCategory })
+                    { filteredArticle in
+                        articleListItem(article: filteredArticle)
+                    }
+                } header: {
+                    Text(savedCategory.name)
+                        .headerProminence(.increased)
+                }
+            }
+
+            Section("uncategorized.label")
+            {
+                ForEach(articles.filter { $0.category == nil })
+                { uncategorizedArticle in
+                    articleListItem(article: uncategorizedArticle)
+                }
+            }
         }
     }
 }
