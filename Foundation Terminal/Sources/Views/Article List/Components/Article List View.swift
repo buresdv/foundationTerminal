@@ -62,27 +62,44 @@ struct ArticleListView: View
     {
         NavigationLink(value: article)
         {
-            VStack(alignment: .leading)
+            HStack(alignment: .center)
             {
-                Text(article.friendlyName)
-                    .font(.headline)
-
-                if let notes = article.customDescription
+                VStack(alignment: .leading)
                 {
-                    Text(notes)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
+                    Text(article.friendlyName)
+                        .font(.headline)
 
-                Text(article.readingStatus.description)
-                    .font(.caption)
+                    if let notes = article.customDescription
+                    {
+                        Text(notes)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Text(article.readingStatus.description)
+                        .font(.caption)
+                }
+                
+                if let rating = article.rating
+                {
+                    Spacer()
+                    
+                    Image(systemName: rating.icon)
+                        .foregroundStyle(.tertiary)
+                }
             }
+        }
+        .swipeActions(edge: .leading, allowsFullSwipe: true)
+        {
+            BookmarkButton(article: article)
         }
     }
 
     @ViewBuilder
     func articleListWithoutCategories(articles: [Article]) -> some View
     {
+        bookmarkedArticles
+        
         List
         {
             ForEach(articles)
@@ -98,6 +115,8 @@ struct ArticleListView: View
     {
         List
         {
+            bookmarkedArticles
+            
             ForEach(categories)
             { savedCategory in
                 if savedCategory.articles != nil
@@ -135,7 +154,7 @@ struct ArticleListView: View
     {
         if let bookmarkedSavedArticles
         {
-            ScrollView
+            Section
             {
                 ForEach(bookmarkedSavedArticles)
                 { bookmarkedArticle in
