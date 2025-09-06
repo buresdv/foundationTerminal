@@ -80,15 +80,21 @@ struct ArticleListView: View
             ForEach(categories)
             { savedCategory in
 
-                Section
+                if savedCategory.articles != nil
                 {
-                    ForEach(articles.filter { $0.category == savedCategory })
-                    { filteredArticle in
-                        articleListItem(article: filteredArticle)
+                    if !savedCategory.articles!.isEmpty
+                    {
+                        Section
+                        {
+                            ForEach(articles.filter { $0.category == savedCategory })
+                            { filteredArticle in
+                                articleListItem(article: filteredArticle)
+                            }
+                        } header: {
+                            Text(savedCategory.name)
+                                .headerProminence(.increased)
+                        }
                     }
-                } header: {
-                    Text(savedCategory.name)
-                        .headerProminence(.increased)
                 }
             }
 
