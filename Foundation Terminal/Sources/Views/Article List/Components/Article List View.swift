@@ -10,8 +10,21 @@ import SwiftUI
 
 struct ArticleListView: View
 {
+    @Environment(\.modelContext) var modelContext: ModelContext
+    
     @Query var savedArticles: [Article]
     @Query var savedCategories: [SavedArticleCategory]
+    
+    // MARK: - Predicates
+    private let bookmarkedArticlesFilterPredicate: Predicate<Article> = #Predicate {
+        $0.isBookmarked == true
+    }
+    
+    var bookmarkedSavedArticles: [Article]?
+    {
+        
+        return try? savedArticles.filter(bookmarkedArticlesFilterPredicate)
+    }
 
     var body: some View
     {
@@ -25,6 +38,10 @@ struct ArticleListView: View
             {
                 articleListViewWithCategories(categories: savedCategories, articles: savedArticles)
             }
+        }
+        .toolbar
+        {
+            EditButton()
         }
         .navigationTitle("article-list.title")
         .navigationDestination(for: Article.self)
@@ -66,9 +83,13 @@ struct ArticleListView: View
     @ViewBuilder
     func articleListWithoutCategories(articles: [Article]) -> some View
     {
-        List(articles)
-        { savedArticle in
-            articleListItem(article: savedArticle)
+        List
+        {
+            ForEach(articles)
+            { savedArticle in
+                articleListItem(article: savedArticle)
+            }
+            .onDelete(perform: deleteSavedArticle)
         }
     }
 
@@ -79,7 +100,6 @@ struct ArticleListView: View
         {
             ForEach(categories)
             { savedCategory in
-
                 if savedCategory.articles != nil
                 {
                     if !savedCategory.articles!.isEmpty
@@ -97,6 +117,7 @@ struct ArticleListView: View
                     }
                 }
             }
+            .onDelete(perform: deleteSavedArticle)
 
             Section("uncategorized.label")
             {
@@ -104,6 +125,35 @@ struct ArticleListView: View
                 { uncategorizedArticle in
                     articleListItem(article: uncategorizedArticle)
                 }
+                .onDelete(perform: deleteSavedArticle)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    var bookmarkedArticles: some View
+    {
+        if let bookmarkedSavedArticles
+        {
+            ScrollView
+            {
+                ForEach(bookmarkedSavedArticles)
+                { bookmarkedArticle in
+                    articleListItem(article: bookmarkedArticle)
+                }
+            }
+        }
+    }
+    
+    func deleteSavedArticle(_ indexSet: IndexSet)
+    {
+        for index in indexSet
+        {
+            let articleToDelete = savedArticles[index]
+            
+            withAnimation
+            {
+                modelContext.delete(articleToDelete)
             }
         }
     }

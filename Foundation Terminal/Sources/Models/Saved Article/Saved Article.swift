@@ -108,11 +108,9 @@ final class Article
 
     var rating: Rating?
 
-    @Transient
     var friendlyName: String
-    {
-        return articleType.description
-    }
+    
+    var isBookmarked: Bool
 
     @Transient
     var articleLink: URL
@@ -138,5 +136,7 @@ final class Article
         self.createdAt = .now
         self.readingProgress = 0
         self.rating = rating
+        self.friendlyName = articleType.description
+        self.isBookmarked = false
     }
 }
