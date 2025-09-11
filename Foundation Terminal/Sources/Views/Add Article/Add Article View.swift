@@ -7,6 +7,7 @@
 
 import ButtonKit
 import FoundationTerminalHTMLLogic
+import SwiftHTMLParser
 import FoundationTerminalShared
 import SwiftData
 import SwiftUI

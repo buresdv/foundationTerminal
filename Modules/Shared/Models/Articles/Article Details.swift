@@ -11,11 +11,18 @@ import Foundation
 public struct ArticleDetails: Codable, Sendable
 {
     /// The title of the article - usually the SCP number
-    let title: String?
-    
+    public let title: String?
+
     /// The type of the article
-    let type: ArticleType?
-    
+    public let type: ArticleType?
+
     /// The rating of the article
-    let rating: Int?
+    public let rating: Int?
+
+    public init(title: String?, type: ArticleType?, rating: Int?)
+    {
+        self.title = title
+        self.type = type
+        self.rating = rating
+    }
 }

@@ -25,6 +25,8 @@ struct ArticleListView: View
         
         return try? savedArticles.filter(bookmarkedArticlesFilterPredicate)
     }
+    
+    @State private var savedArticlesSortOrder: SortDescriptor = .init(\Article.createdAt)
 
     var body: some View
     {
@@ -39,10 +41,6 @@ struct ArticleListView: View
                 articleListViewWithCategories(categories: savedCategories, articles: savedArticles)
             }
         }
-        .toolbar
-        {
-            EditButton()
-        }
         .navigationTitle("article-list.title")
         .navigationDestination(for: Article.self)
         { article in
@@ -50,9 +48,16 @@ struct ArticleListView: View
         }
         .toolbar
         {
+            EditButton()
+            
             ToolbarItem(placement: .topBarTrailing)
             {
                 OpenArticleSavingSheetButton()
+            }
+            
+            ToolbarItem(placement: .topBarLeading)
+            {
+                SortArticlesMenu()
             }
         }
     }

@@ -21,6 +21,7 @@ public enum FoundationTerminalAsset: Sendable {
   public enum Assets {
   public static let accentColor = FoundationTerminalColors(name: "AccentColor")
     public static let customAppleTerminal2TrianglebadgeExclamationmark = FoundationTerminalImages(name: "custom.apple.terminal.2.trianglebadge.exclamationmark")
+    public static let customTextDocumentBadgePlus = FoundationTerminalImages(name: "custom.text.document.badge.plus")
   }
   public enum PreviewAssets {
   }

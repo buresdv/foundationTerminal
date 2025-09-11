@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 import SwiftUI
+import FoundationTerminalShared
 
 @Model
 final class Article
@@ -87,7 +88,7 @@ final class Article
                 return "chart.line.downtrend.xyaxis"
             }
         }
-        
+
         var id: Self
         {
             self
@@ -109,7 +110,7 @@ final class Article
     var rating: Rating?
 
     var friendlyName: String
-    
+
     var isBookmarked: Bool
 
     @Transient

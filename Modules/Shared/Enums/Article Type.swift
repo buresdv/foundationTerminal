@@ -98,7 +98,7 @@ public enum ArticleType: Codable, Sendable, CustomStringConvertible
         }
     }
 
-    var fullArticleURL: URL
+    public var fullArticleURL: URL
     {
         switch self
         {
