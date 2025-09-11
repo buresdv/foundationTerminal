@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FoundationTerminalShared
+import FoundationTerminalHTMLLogic
 
 struct LoadedDetailsView: View
 {

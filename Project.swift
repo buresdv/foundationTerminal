@@ -65,7 +65,8 @@ let foundationTerminalTarget: ProjectDescription.Target = .target(
     dependencies: [
         .external(name: "Defaults"),
         .external(name: "ButtonKit"),
-        .target(foundationTerminalSharedTarget)
+        .target(foundationTerminalSharedTarget),
+        .target(foundationTerminalHTMLLogicTarget)
     ],
     settings: baseSettings
 )

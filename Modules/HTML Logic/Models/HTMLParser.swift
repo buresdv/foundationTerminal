@@ -10,6 +10,8 @@ import SwiftHTMLParser
 
 public actor TerminalHTMLParser
 {
+    public init() {}
+    
     public enum HTMLParsingError: LocalizedError
     {
         case couldNotConvertDataToString

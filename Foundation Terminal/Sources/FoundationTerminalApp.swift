@@ -1,6 +1,7 @@
 import FoundationTerminalShared
 import SwiftData
 import SwiftUI
+import FoundationTerminalHTMLLogic
 
 extension EnvironmentValues
 {

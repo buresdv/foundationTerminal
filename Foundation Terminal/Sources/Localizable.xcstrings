@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "action.add-article" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -12,6 +13,7 @@
       }
     },
     "action.add-category" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -22,6 +24,7 @@
       }
     },
     "action.add-notes" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -30,9 +33,6 @@
           }
         }
       }
-    },
-    "action.bookmark" : {
-
     },
     "action.cancel" : {
       "localizations" : {
@@ -66,6 +66,7 @@
       }
     },
     "action.open-article.%@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -76,6 +77,7 @@
       }
     },
     "action.search" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -86,6 +88,7 @@
       }
     },
     "add-article.article-category.header" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -96,6 +99,7 @@
       }
     },
     "add-article.article-details.header" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -167,6 +171,7 @@
       }
     },
     "add-article.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -197,6 +202,7 @@
       }
     },
     "add-category.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -207,6 +213,7 @@
       }
     },
     "alert.could-not-load-article-details.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -217,6 +224,7 @@
       }
     },
     "alert.failed-container-initialization.model-description-%@.error-%@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -227,6 +235,7 @@
       }
     },
     "alert.failed-container-initialization.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -257,6 +266,7 @@
       }
     },
     "article-list.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -307,6 +317,7 @@
       }
     },
     "delete-swift-data.confirmation.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -320,6 +331,7 @@
 
     },
     "error.fatal" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -329,13 +341,11 @@
         }
       }
     },
-    "html-parsing.error.could-not-parse-html.%@" : {
-
-    },
-    "html-parsing.error.coult-not-convert-data-to-string" : {
+    "Hello, World!" : {
 
     },
     "model.article.description" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -346,6 +356,7 @@
       }
     },
     "model.article.rating.average" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -356,6 +367,7 @@
       }
     },
     "model.article.rating.exceptional" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -366,6 +378,7 @@
       }
     },
     "model.article.rating.good" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -376,6 +389,7 @@
       }
     },
     "model.article.rating.horrible" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -396,6 +410,7 @@
       }
     },
     "model.article.rating.poor" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -406,6 +421,7 @@
       }
     },
     "model.article.reading-status.finished" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -416,6 +432,7 @@
       }
     },
     "model.article.reading-status.planning" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -426,6 +443,7 @@
       }
     },
     "model.article.reading-status.reading" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -436,6 +454,7 @@
       }
     },
     "status.no-articles-saved.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -444,9 +463,6 @@
           }
         }
       }
-    },
-    "uncategorized.label" : {
-
     }
   },
   "version" : "1.0"

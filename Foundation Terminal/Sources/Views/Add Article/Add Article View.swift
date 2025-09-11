@@ -184,7 +184,7 @@ struct AddArticleView: View
     func saveNewArticle()
     {
         let newArticle: Article = .init(
-            articleType: .scp(.init(articleNumber)),
+            articleType: .scp(.init(rawValue: articleNumber)),
             customDescription: articleNotes,
             category: seletedCategory,
             readingStatus: articleReadingStatus

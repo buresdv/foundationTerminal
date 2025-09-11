@@ -11,21 +11,22 @@ import SwiftUI
 struct ArticleListView: View
 {
     @Environment(\.modelContext) var modelContext: ModelContext
-    
+
     @Query var savedArticles: [Article]
     @Query var savedCategories: [SavedArticleCategory]
-    
+
     // MARK: - Predicates
-    private let bookmarkedArticlesFilterPredicate: Predicate<Article> = #Predicate {
+
+    private let bookmarkedArticlesFilterPredicate: Predicate<Article> = #Predicate
+    {
         $0.isBookmarked == true
     }
-    
+
     var bookmarkedSavedArticles: [Article]?
     {
-        
         return try? savedArticles.filter(bookmarkedArticlesFilterPredicate)
     }
-    
+
     @State private var savedArticlesSortOrder: SortDescriptor = .init(\Article.createdAt)
 
     var body: some View
@@ -48,13 +49,16 @@ struct ArticleListView: View
         }
         .toolbar
         {
-            EditButton()
-            
+            ToolbarItem(placement: .automatic)
+            {
+                EditButton()
+            }
+
             ToolbarItem(placement: .topBarTrailing)
             {
                 OpenArticleSavingSheetButton()
             }
-            
+
             ToolbarItem(placement: .topBarLeading)
             {
                 SortArticlesMenu()
@@ -84,11 +88,11 @@ struct ArticleListView: View
                     Text(article.readingStatus.description)
                         .font(.caption)
                 }
-                
+
                 if let rating = article.rating
                 {
                     Spacer()
-                    
+
                     Image(systemName: rating.icon)
                         .foregroundStyle(.tertiary)
                 }
@@ -104,7 +108,7 @@ struct ArticleListView: View
     func articleListWithoutCategories(articles: [Article]) -> some View
     {
         bookmarkedArticles
-        
+
         List
         {
             ForEach(articles)
@@ -121,7 +125,7 @@ struct ArticleListView: View
         List
         {
             bookmarkedArticles
-            
+
             ForEach(categories)
             { savedCategory in
                 if savedCategory.articles != nil
@@ -153,7 +157,7 @@ struct ArticleListView: View
             }
         }
     }
-    
+
     @ViewBuilder
     var bookmarkedArticles: some View
     {
@@ -168,13 +172,13 @@ struct ArticleListView: View
             }
         }
     }
-    
+
     func deleteSavedArticle(_ indexSet: IndexSet)
     {
         for index in indexSet
         {
             let articleToDelete = savedArticles[index]
-            
+
             withAnimation
             {
                 modelContext.delete(articleToDelete)

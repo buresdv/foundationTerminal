@@ -47,10 +47,9 @@ public enum ArticleType: Codable, Sendable, CustomStringConvertible
     {
         public let rawValue: Int
 
-        public init?(rawValue: Int)
+        public init(rawValue: Int)
         {
-            guard rawValue >= 0 else { return nil }
-            self.rawValue = rawValue
+            self.rawValue = abs(rawValue)
         }
 
         public init?(_ description: String)
