@@ -87,6 +87,17 @@
         }
       }
     },
+    "action.sort" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort…"
+          }
+        }
+      }
+    },
     "add-article.article-category.header" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -340,9 +351,6 @@
           }
         }
       }
-    },
-    "Hello, World!" : {
-
     },
     "model.article.description" : {
       "extractionState" : "stale",

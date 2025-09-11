@@ -9,8 +9,21 @@ import SwiftUI
 
 struct SortArticlesMenu: View
 {
+    @Binding var sortOrder: Article.SortBy
+
     var body: some View
     {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Menu
+        {
+            Picker("action.sort", selection: $sortOrder)
+            {
+                ForEach(Article.SortBy.allCases)
+                { sortCase in
+                    Text(sortCase.description)
+                }
+            }
+        } label: {
+            Label("action.sort", systemImage: "line.3.horizontal.decrease")
+        }
     }
 }

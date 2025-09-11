@@ -6,14 +6,14 @@
 //
 
 import Foundation
+import FoundationTerminalShared
 import SwiftData
 import SwiftUI
-import FoundationTerminalShared
 
 @Model
 final class Article
 {
-    enum ReadingStatus: Identifiable, Codable, Hashable, CustomStringConvertible, CaseIterable
+    enum ReadingStatus: Identifiable, Codable, Hashable, CustomStringConvertible, CaseIterable, Comparable
     {
         static var allCases: [Article.ReadingStatus]
         {
@@ -47,7 +47,7 @@ final class Article
         }
     }
 
-    enum Rating: Identifiable, Codable, CustomStringConvertible, CaseIterable
+    enum Rating: Identifiable, Codable, CustomStringConvertible, CaseIterable, Comparable
     {
         case exceptional
         case good
@@ -86,6 +86,50 @@ final class Article
                 return "hand.thumbsdown"
             case .horrible:
                 return "chart.line.downtrend.xyaxis"
+            }
+        }
+
+        var id: Self
+        {
+            self
+        }
+    }
+
+    enum SortBy: CaseIterable, Identifiable, CustomStringConvertible
+    {
+        case rating
+        case dateAdded
+        case readingStatus
+
+        var description: String
+        {
+            switch self
+            {
+            case .rating:
+                return String(localized: "model.article.sort-by.rating")
+            case .dateAdded:
+                return String(localized: "model.article.sort-by.date-added")
+            case .readingStatus:
+                return String(localized: "model.article.sort-by.reading-status")
+            }
+        }
+
+        var sortDescriptor: [SortDescriptor<Article>]
+        {
+            switch self
+            {
+            case .rating:
+                return [
+                    .init(\Article.rating?.description)
+                ]
+            case .dateAdded:
+                return [
+                    .init(\Article.createdAt)
+                ]
+            case .readingStatus:
+                return [
+                    .init(\Article.readingStatus)
+                ]
             }
         }
 

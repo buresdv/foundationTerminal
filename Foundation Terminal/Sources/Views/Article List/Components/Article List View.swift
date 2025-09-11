@@ -14,6 +14,24 @@ struct ArticleListView: View
 
     @Query var savedArticles: [Article]
     @Query var savedCategories: [SavedArticleCategory]
+    
+    @State private var searchString: String = .init()
+    
+    @State private var sortArticlesBy: Article.SortBy = .dateAdded
+    
+    init()
+    {
+        self._savedArticles = Query(filter: #Predicate{
+            if searchString.isEmpty
+            {
+                return true
+            }
+            else
+            {
+                return $0.friendlyName.localizedStandardContains(searchString)
+            }
+        }, sort: sortArticlesBy.sortDescriptor, animation: .bouncy)
+    }
 
     // MARK: - Predicates
 
@@ -47,6 +65,7 @@ struct ArticleListView: View
         { article in
             ArticleDetailsView(article: article)
         }
+        .searchable(text: $searchString)
         .toolbar
         {
             ToolbarItem(placement: .automatic)
@@ -61,7 +80,7 @@ struct ArticleListView: View
 
             ToolbarItem(placement: .topBarLeading)
             {
-                SortArticlesMenu()
+                SortArticlesMenu(sortOrder: $sortArticlesBy)
             }
         }
     }
